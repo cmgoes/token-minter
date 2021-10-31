@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/rP2Fp2ywxg089UriCZa4Hz-G.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/rP2Ap2ywxg089UriCZaw7ByWCXwW.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/rP2Ap2ywxg089UriCZawpBqWCXwW.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/rP2Hp2ywxg089UriCZOIGA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/rP2Cp2ywxg089UriAWCrCBimDg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/rP2Cp2ywxg089UriASitCBimDg.ttf) format('truetype');
+}

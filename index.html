@@ -1,0 +1,448 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>VTS ERC20 / BEP20 Token Generator</title>
+    <!--CDN for Bootstrap 4-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!--CDN for Animation-->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!--Main Stylesheet-->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!--Link for Material Icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <a href="#" class="logo"> <img src="./assets/images/logo.png" width="75px" height="75px"></a>
+                    </div>
+                    <div class="col-9 text-right">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <span class="theme_chnge">
+                        <a href="#" class="theme_clr moon_theme tltip_bx"> <img src="./assets/images/moon.png">
+    
+    
+                        </a>
+                        <a href="#" class="theme_clr day_theme tltip_bx"> <img src="./assets/images/theme.png">
+    
+                        </a>
+                    </span>
+                            <span class="tltip_bx">
+                    <p id="metamask-status" style="text-align: center; color: rgb(0, 0, 255); display: none;">Please allow MetaMask to view your addresses</p>
+                        <a href="#" class="btn btn-primary drkblu_Btn" onclick="loadWeb3();"> <img src="./assets/images/icon.png"> <span>Connect Metamask </span>
+                            </a>
+                            <div class="tltip">
+                                <p class="content hide" id="current-address" align="center" style="display: none;"></p>
+                                <p class="content hide" id="current-network" align="center" style="display: block;">Connected to Ethereum Mainnet</p>
+                            </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="mail-status"></div>
+
+        <section class="midle_bx">
+            <div class="container">
+                <div class="tp_heding text-center">
+                    <span class="grey_txt"> Virtual Trading Solutions LLC</span>
+                    <h1 class="blck_txt"> Token Builder</h1>
+                    <span class="grey_txt des_txt"> Easily deploy Smart Contracts for any Token right from your browser </span>
+                </div>
+                <div class="row wrap-form ">
+                    <div class="col-12 align-self-end hide" id="metamask-locked" style="display: block;">
+                    </div>
+                    <div class="col-12 text-center hide" id="metamask-unlocked">
+                <i class="material-icons metamask-span">lock_open</i>
+                <span class="metamask-text">Metamask Unlocked</span>
+            </div>-->
+                    <!--Asset Generator Form-->
+                    <div class="col-12 align-self-center ">
+                        <div class="actv_bx">
+
+                        </div>
+                    </div>
+                    <div class="col-12 align-self-center">
+                        <form id="asset-form">
+                            <div class="form-group">
+                                <div class="radio_btn">
+                                    <label class="rdo_Btn">
+                                <input id="etherToken" type="radio" name="category" onclick="loadWeb3();" class="network" value="ERC20 Etherium" checked="" disabled="">
+                                <span class="label-control  frm_bx">ERC20 Ethereum </span>
+                            </label>
+                                    <label class="rdo_Btn">
+                                <input id="bnbToken" type="radio" name="category" onclick="loadWeb3();" class="network" value="BEP20 Binance" disabled="">
+                                <span class="label-control  frm_bx">BEP20 Binance </span>
+                            </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="frm_bx fcs_efct">
+                                    <label for="txtName" class="label-control">Token Name *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required="" disabled="">
+                                    <a href="#asset-name" class="tltip_bx">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM12 22C10.0222 22 8.08879 21.4135 6.4443 20.3147C4.79981 19.2159 3.51809 17.6541 2.76121 15.8268C2.00433 13.9996 1.8063 11.9889 2.19215 10.0491C2.578 8.10929 3.53041 6.32746 4.92894 4.92893C6.32746 3.53041 8.10929 2.578 10.0491 2.19215C11.9889 1.8063 13.9996 2.00433 15.8268 2.7612C17.6541 3.51808 19.2159 4.79981 20.3147 6.4443C21.4135 8.08879 22 10.0222 22 12C21.9971 14.6513 20.9426 17.1931 19.0679 19.0679C17.1931 20.9426 14.6513 21.9971 12 22Z" fill="#2A5E5E"></path>
+                                <path d="M12 5C11.7348 5 11.4804 5.10536 11.2929 5.29289C11.1054 5.48043 11 5.73478 11 6V14C11 14.2652 11.1054 14.5196 11.2929 14.7071C11.4804 14.8946 11.7348 15 12 15C12.2652 15 12.5196 14.8946 12.7071 14.7071C12.8946 14.5196 13 14.2652 13 14V6C13 5.73478 12.8946 5.48043 12.7071 5.29289C12.5196 5.10536 12.2652 5 12 5Z" fill="#2A5E5E"></path>
+                                <path d="M13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18Z" fill="#2A5E5E"></path>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0">
+                                <rect width="24" height="24" fill="white"></rect>
+                                </clipPath>
+                                </defs>
+                                </svg>
+
+
+                                        <div class="tltip">
+                                            Name is simply what you want to call your token, such as Bitcoin or Ethereum.
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="frm_bx fcs_efct">
+                                    <label for="txtName" class="label-control info" id="token_symbol">Token Symbol *</label>
+                                    <input type="text" class="form-control" id="symbol" name="symbol" required="" disabled="">
+                                    <a href="#asset-symbol" class="tltip_bx">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM12 22C10.0222 22 8.08879 21.4135 6.4443 20.3147C4.79981 19.2159 3.51809 17.6541 2.76121 15.8268C2.00433 13.9996 1.8063 11.9889 2.19215 10.0491C2.578 8.10929 3.53041 6.32746 4.92894 4.92893C6.32746 3.53041 8.10929 2.578 10.0491 2.19215C11.9889 1.8063 13.9996 2.00433 15.8268 2.7612C17.6541 3.51808 19.2159 4.79981 20.3147 6.4443C21.4135 8.08879 22 10.0222 22 12C21.9971 14.6513 20.9426 17.1931 19.0679 19.0679C17.1931 20.9426 14.6513 21.9971 12 22Z" fill="#2A5E5E"></path>
+                                <path d="M12 5C11.7348 5 11.4804 5.10536 11.2929 5.29289C11.1054 5.48043 11 5.73478 11 6V14C11 14.2652 11.1054 14.5196 11.2929 14.7071C11.4804 14.8946 11.7348 15 12 15C12.2652 15 12.5196 14.8946 12.7071 14.7071C12.8946 14.5196 13 14.2652 13 14V6C13 5.73478 12.8946 5.48043 12.7071 5.29289C12.5196 5.10536 12.2652 5 12 5Z" fill="#2A5E5E"></path>
+                                <path d="M13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18Z" fill="#2A5E5E"></path>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0">
+                                <rect width="24" height="24" fill="white"></rect>
+                                </clipPath>
+                                </defs>
+                                </svg>
+
+                                        <div class="tltip">
+                                            Symbol will be the ticker of your token, such as BTC or ETC (normally tokens have a 3 letter uppercase symbol).
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="frm_bx ">
+                                    <div class="bx_rw">
+                                        <div class="bx_first fcs_efct">
+                                            <label for="txtName" class="label-control">Decimals</label>
+                                            <input type="text" value="18" class="form-control" maxlength="2" id="decimals" name="decimals" disabled="" style="opacity: 0.15;">
+                                            <!--<a href="#asset-decimal"><img src="./assets/images/tool_tip.png" /></a>-->
+                                            <span class="error-msg" id="decimals-error-msg"></span>
+                                        </div>
+                                        <div class="bx_first sec_bx fcs_efct">
+                                            <label for="txtName" class="label-control">Total Supply</label>
+                                            <input type="text" value="10000" class="form-control totalsupply" id="total-supply" name="total-supply" disabled="" style="opacity: 0.15;">
+
+                                            <span class="error-msg" id="total-supply-error-msg"></span>
+                                        </div>
+                                    </div>
+                                    <a href="#asset-supply" class="tltip_bx">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                            <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM12 22C10.0222 22 8.08879 21.4135 6.4443 20.3147C4.79981 19.2159 3.51809 17.6541 2.76121 15.8268C2.00433 13.9996 1.8063 11.9889 2.19215 10.0491C2.578 8.10929 3.53041 6.32746 4.92894 4.92893C6.32746 3.53041 8.10929 2.578 10.0491 2.19215C11.9889 1.8063 13.9996 2.00433 15.8268 2.7612C17.6541 3.51808 19.2159 4.79981 20.3147 6.4443C21.4135 8.08879 22 10.0222 22 12C21.9971 14.6513 20.9426 17.1931 19.0679 19.0679C17.1931 20.9426 14.6513 21.9971 12 22Z" fill="#2A5E5E"></path>
+                            <path d="M12 5C11.7348 5 11.4804 5.10536 11.2929 5.29289C11.1054 5.48043 11 5.73478 11 6V14C11 14.2652 11.1054 14.5196 11.2929 14.7071C11.4804 14.8946 11.7348 15 12 15C12.2652 15 12.5196 14.8946 12.7071 14.7071C12.8946 14.5196 13 14.2652 13 14V6C13 5.73478 12.8946 5.48043 12.7071 5.29289C12.5196 5.10536 12.2652 5 12 5Z" fill="#2A5E5E"></path>
+                            <path d="M13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18Z" fill="#2A5E5E"></path>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="24" height="24" fill="white"></rect>
+                            </clipPath>
+                            </defs>
+                            </svg>
+
+                                        <div class="tltip">
+                                            Decimals is how many decimal places your token can have, which determines how divisible it is. Generally tokens will have 18 decimals, which allows 1 token to be divided into trillions of pieces (eg. with 18 decimals you could have as little as 0.000000000000000001
+                                            of a token).
+                                            <br><br> Total Supply will be number of tokens available. Token Total Supply VALUE will be total number of tokens to the power of decimal places. (eg. if total supply is 1000 and decimals is 18 then give 1000000000000000000000
+                                            as a value.)
+
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="frm_bx fcs_efct">
+                                    <label for="txtName" class="label-control">Supply Cap</label>
+                                    <input type="text" value="10000" class="form-control" name="supplyCap" id="supplyCap" disabled="" style="opacity: 0.15;">
+                                    <a href="#asset-supplyCap" class="tltip_bx">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0)">
+                                        <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM12 22C10.0222 22 8.08879 21.4135 6.4443 20.3147C4.79981 19.2159 3.51809 17.6541 2.76121 15.8268C2.00433 13.9996 1.8063 11.9889 2.19215 10.0491C2.578 8.10929 3.53041 6.32746 4.92894 4.92893C6.32746 3.53041 8.10929 2.578 10.0491 2.19215C11.9889 1.8063 13.9996 2.00433 15.8268 2.7612C17.6541 3.51808 19.2159 4.79981 20.3147 6.4443C21.4135 8.08879 22 10.0222 22 12C21.9971 14.6513 20.9426 17.1931 19.0679 19.0679C17.1931 20.9426 14.6513 21.9971 12 22Z" fill="#2A5E5E"></path>
+                                        <path d="M12 5C11.7348 5 11.4804 5.10536 11.2929 5.29289C11.1054 5.48043 11 5.73478 11 6V14C11 14.2652 11.1054 14.5196 11.2929 14.7071C11.4804 14.8946 11.7348 15 12 15C12.2652 15 12.5196 14.8946 12.7071 14.7071C12.8946 14.5196 13 14.2652 13 14V6C13 5.73478 12.8946 5.48043 12.7071 5.29289C12.5196 5.10536 12.2652 5 12 5Z" fill="#2A5E5E"></path>
+                                        <path d="M13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18Z" fill="#2A5E5E"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0">
+                                            <rect width="24" height="24" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                                        <div class="tltip">
+                                            The total supply cap you want for your new token.
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="advnc_sec">
+                                    <h4> <span class="link">Advanced Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L5 5L9 1" stroke="#2A5E5E" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span>
+                                    </h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                            <input id="customSupply" type="checkbox" value="Custom Initial Supply" name="feature" onclick="spaceCream();" class="checkbox" disabled="">
+                                            <span class="slider round"></span>
+                                        </label> Custom Initial Supply
+                                            </div>
+                                            <span class="value" id="customSup">0.03 ETH</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="customDecimals" type="checkbox" onclick="spaceCream();" value="Custom Decimals" name="feature" class="checkbox" disabled="">
+                                      <span class="slider round"></span>
+                                    </label> Custom Decimals
+                                            </div>
+                                            <span class="value" id="customDec">0.03 ETH</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="ownable" type="checkbox" value="Ownable Contract" name="feature" onclick="spaceCream();" class="checkbox" disabled="">
+                                      <span class="slider round"></span>
+                                    </label> Ownable Contract
+                                            </div>
+                                            <span class="value" id="own">0.03 ETH</span>
+                                        </li>
+                                        <li style="display: none !important;" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="removal" type="checkbox" value="Generator Info Removal" name="feature" onclick="spaceCream();" class="checkbox" disabled="" checked>
+                                      <span class="slider round"></span>
+                                    </label> Generator Info Removal
+                                            </div>
+                                            <span class="value" id="genRemove">0.13 ETH</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="mintUnlimited" type="checkbox" onclick="spaceCream();" value="Mint - Unlimited Supply Cap" name="feature" class="checkbox" disabled="">
+                                      <span class="slider round"></span>
+                                    </label> Mint - Unlimited Supply Cap
+                                            </div>
+                                            <span class="value" id="unlimited">0.05 ETH</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="mintLimited" type="checkbox" onclick="spaceCream();" value="Mint - Limited Supply Cap" name="feature" class="checkbox" disabled="">
+                                      <span class="slider round"></span>
+                                    </label> Mint - Limited Supply Cap
+                                            </div>
+                                            <span class="value" id="limited">0.03 ETH</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                      <input id="burn" type="checkbox" onclick="spaceCream();" name="feature" value="Burnable" class="checkbox" disabled="">
+                                      <span class="slider round"></span>
+                                    </label> Burnable
+                                            </div>
+                                            <span class="value" id="burnable">0.04 ETH</span>
+                                        </li>
+                                        <li style="display: none !important;" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                            <input id="recover" type="checkbox" onclick="spaceCream();" value="Token Recovery" name="feature" class="checkbox" disabled="">
+                                            <span class="slider round"></span>
+                                        </label> Token Recovery
+                                            </div>
+                                            <span class="value" id="recovery">0.04 ETH</span>
+                                        </li>
+                                        <li style="display: none !important;" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="txt">
+                                                <label class="switch">
+                                            <input id="operable" type="checkbox" onclick="spaceCream();" value="ERC1363 - Operable Token" name="feature" class="checkbox" disabled="">
+                                            <span class="slider round"></span>
+                                        </label> ERC1363 - Operable Token
+                                            </div>
+                                            <span class="value" id="operate">0.04 ETH</span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="frm_bx fcs_efct">
+                                    <label for="txtName" class="label-control">Your Email *</label>
+                                    <input type="email" class="form-control" id="userEmail" name="userEmail" required="" disabled="">
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" disabled="">
+                                    <label class="form-check-label" for="exampleCheck1"> <span class="chck_bx"></span> 
+                            <span>I have read, understood and agreed to ERC20 Token Generator's <a href="#" class="link" data-toggle="modal" data-target="#privacy_policy"> Terms of Use. </a> </span> </label>
+                                </div>
+                            </div>
+                            -->
+                            <div class="form-group">
+                                <!--<button align="center" class="submit-button btn btn-primary" id="submit-btn" type="submit" onclick="sendContact(); gtag('event', 'click', { 'event_category': 'deploy'});" disabled=""> oken For  <span style="color:white" id="priceTotal"> VTS</span></button> -->
+                                <button align="center" class="submit-button btn btn-primary" id="submit-btn" type="submit" disabled=""> Deploy Token For  <span style="color:white" id="priceTotal"> VTS</span></button>
+                            </div>
+                            <div class="form-group">
+                                    <span class="grey_txt">Begin your cryptocurrency Venture Today!
+                    </span>
+                            </div>
+
+                        </form>
+                        <!--Asset Generator Form Ends here-->
+                        <p id="statusText"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---->
+        <!--Section for Info Message ends-->
+        
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright-row">
+                    <p>Virtual Trading Solutions LLC (VTS) and its author(s) are free of any liability regarding Tokens built using this App, and the use that is made of them. Tokens built on vt.solutions, their projects, their teams, their use of Token (as well as
+                        anything related to Token) are in no way connected to VTS or its author.
+                    </p>
+                    <p>
+                        VTS code is provided under MIT License. Anyone can use it as per their needs. The Apps purpose is to make people able to tokenize their ideas without coding. Source code is verified and well tested and continuously updated to reduce
+                        risk of bugs and introduce language optimizations. Anyway the purchase of tokens involves a high degree of risk. Before acquiring tokens, it is recommended to carefully weighs all the information and risks detailed in Token owners
+                        Conditions.
+                    </p>
+                    <p>
+                        © Virtual Trading Solutions LLC 2021 All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
+
+        <div class="modal fade" id="privacy_policy" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="customModalLabel">Privacy Policy</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <img src="./assets/images/close.png">
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="custom-modal-content">
+                            <p>ERC20 Token Generator is a distributed application that runs on the Ethereum network, using specially-developed Smart Contracts to enable users to build their ERC20 Tokens. The Smart Contracts, and the Site, are collectively
+                                referred to in these Terms as the "App".</p>
+                            <h4>The App</h4>
+                            <p>To most easily use the App, you must first install a browser extension called MetaMask. MetaMask is an electronic wallet, which allows you to purchase, store, and engage in transactions using Ethereum cryptocurrency. You will
+                                not be able to engage in any transactions on the App other than through MetaMask. Transactions that take place on the App are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address
+                                will be made publicly visible whenever you engage in a transaction on the App. We neither own nor control MetaMask, the Ethereum network, or any other third party site, product, or service that you might access, visit,
+                                or use for the purpose of enabling you to use the various features of the App. We will not be liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result
+                                of your transactions or any other interaction with any such third parties.</p>
+                            <h4>Fees and Payment</h4>
+                            <p>If you elect to build a ERC20 Token on the App, or with or from other users via the App, any financial transactions that you engage in will be conducted solely through the Ethereum network via MetaMask. </p>
+                            <h4>The App</h4>
+                            <p>To most easily use the App, you must first install a browser extension called MetaMask. MetaMask is an electronic wallet, which allows you to purchase, store, and engage in transactions using Ethereum cryptocurrency. You will
+                                not be able to engage in any transactions on the App other than through MetaMask. Transactions that take place on the App are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address
+                                will be made publicly visible whenever you engage in a transaction on the App. We neither own nor control MetaMask, the Ethereum network, or any other third party site, product, or service that you might access, visit,
+                                or use for the purpose of enabling you to use the various features of the App. We will not be liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result
+                                of your transactions or any other interaction with any such third parties.</p>
+                            <h4>Fees and Payment</h4>
+                            <p>If you elect to build a ERC20 Token on the App, or with or from other users via the App, any financial transactions that you engage in will be conducted solely through the Ethereum network via MetaMask. </p>
+                            <h4>The App</h4>
+                            <p>To most easily use the App, you must first install a browser extension called MetaMask. MetaMask is an electronic wallet, which allows you to purchase, store, and engage in transactions using Ethereum cryptocurrency. You will
+                                not be able to engage in any transactions on the App other than through MetaMask. Transactions that take place on the App are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address
+                                will be made publicly visible whenever you engage in a transaction on the App. We neither own nor control MetaMask, the Ethereum network, or any other third party site, product, or service that you might access, visit,
+                                or use for the purpose of enabling you to use the various features of the App. We will not be liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result
+                                of your transactions or any other interaction with any such third parties.</p>
+                            <h4>Fees and Payment</h4>
+                            <p>If you elect to build a ERC20 Token on the App, or with or from other users via the App, any financial transactions that you engage in will be conducted solely through the Ethereum network via MetaMask. </p>
+                            <h4>The App</h4>
+                            <p>To most easily use the App, you must first install a browser extension called MetaMask. MetaMask is an electronic wallet, which allows you to purchase, store, and engage in transactions using Ethereum cryptocurrency. You will
+                                not be able to engage in any transactions on the App other than through MetaMask. Transactions that take place on the App are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address
+                                will be made publicly visible whenever you engage in a transaction on the App. We neither own nor control MetaMask, the Ethereum network, or any other third party site, product, or service that you might access, visit,
+                                or use for the purpose of enabling you to use the various features of the App. We will not be liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result
+                                of your transactions or any other interaction with any such third parties.</p>
+                            <h4>Fees and Payment</h4>
+                            <p>If you elect to build a ERC20 Token on the App, or with or from other users via the App, any financial transactions that you engage in will be conducted solely through the Ethereum network via MetaMask. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <!--Libs-->
+    <!--CDN for jquery and popper.js and bootstrap-->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <!--Core-->
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/app.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+
+            $('input').focus(function(event) {
+                $(this).closest('.fcs_efct').addClass('float').addClass('focus');
+            })
+            $('input').blur(function() {
+                $(this).closest('.fcs_efct').removeClass('focus');
+                if (!$(this).val()) {
+                    $(this).closest('.fcs_efct').removeClass('float');
+                }
+            });
+            $('.theme_clr').click(function() {
+                $('body').toggleClass('dark_theme')
+            });
+
+
+            $('.advnc_sec .link').click(function() {
+                $(this).parent('h4').siblings('ul.list-group').slideToggle('slow');
+                $(this).addClass('active');
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
